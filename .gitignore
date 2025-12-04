@@ -1,0 +1,135 @@
+cat > .gitignore << 'EOF'
+# ============================================
+# BrandGuard - Git Ignore File
+# ============================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+*.mo
+*.pot
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+
+# Virtual Environments
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backend
+backend/.env
+backend/instance/
+backend/alembic/versions/*.py
+!backend/alembic/versions/__init__.py
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnpm-debug.log*
+
+# Database
+*.db
+*.sqlite3
+pgdata/
+
+# Elasticsearch
+elasticsearch_data/
+
+# Redis
+redis_data/
+
+# Uploads
+uploads/
+media/
+staticfiles/
+
+# Logs
+*.log
+logs/
+
+# Docker
+docker-compose.override.yml
+
+# Secrets
+*.pem
+*.key
+*.crt
+*.pfx
+secrets.yml
+secrets.yaml
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+test-results/
+test-reports/
+
+# Documentation
+docs/_build/
+
+# Temporary files
+tmp/
+temp/
+EOF
