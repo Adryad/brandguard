@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -7,6 +8,18 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+=======
+cat > .gitignore << 'EOF'
+# ============================================
+# BrandGuard - Git Ignore File
+# ============================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+>>>>>>> 2e49519 (Initial commit: BrandGuard v1.0.0)
 .Python
 build/
 develop-eggs/
@@ -20,11 +33,15 @@ parts/
 sdist/
 var/
 wheels/
+<<<<<<< HEAD
 share/python-wheels/
+=======
+>>>>>>> 2e49519 (Initial commit: BrandGuard v1.0.0)
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
+<<<<<<< HEAD
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -40,12 +57,21 @@ pip-delete-this-directory.txt
 htmlcov/
 .tox/
 .nox/
+=======
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+>>>>>>> 2e49519 (Initial commit: BrandGuard v1.0.0)
 .coverage
 .coverage.*
 .cache
 nosetests.xml
 coverage.xml
 *.cover
+<<<<<<< HEAD
 *.py.cover
 .hypothesis/
 .pytest_cache/
@@ -140,10 +166,26 @@ celerybeat.pid
 .venv
 env/
 venv/
+=======
+.hypothesis/
+.pytest_cache/
+*.mo
+*.pot
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+
+# Virtual Environments
+venv/
+env/
+.venv/
+>>>>>>> 2e49519 (Initial commit: BrandGuard v1.0.0)
 ENV/
 env.bak/
 venv.bak/
 
+<<<<<<< HEAD
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -205,3 +247,84 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+=======
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backend
+backend/.env
+backend/instance/
+backend/alembic/versions/*.py
+!backend/alembic/versions/__init__.py
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnpm-debug.log*
+
+# Database
+*.db
+*.sqlite3
+pgdata/
+
+# Elasticsearch
+elasticsearch_data/
+
+# Redis
+redis_data/
+
+# Uploads
+uploads/
+media/
+staticfiles/
+
+# Logs
+*.log
+logs/
+
+# Docker
+docker-compose.override.yml
+
+# Secrets
+*.pem
+*.key
+*.crt
+*.pfx
+secrets.yml
+secrets.yaml
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+test-results/
+test-reports/
+
+# Documentation
+docs/_build/
+
+# Temporary files
+tmp/
+temp/
+EOF
+>>>>>>> 2e49519 (Initial commit: BrandGuard v1.0.0)
