@@ -1,0 +1,32 @@
+# Include production requirements
+-r requirements.txt
+
+# Development tools
+ipython==8.18.1
+jupyterlab==4.0.10
+notebook==7.0.7
+doc8==1.1.1
+sphinx==7.2.6
+mkdocs-material==9.5.2
+
+# Debugging
+pdbpp==0.10.3
+ipdb==0.13.13
+wdb==3.3.0
+
+# Performance analysis
+memory-profiler==0.61.0
+py-spy==0.3.14  # Install via pip install py-spy
+line-profiler==4.1.1
+
+# Documentation generation
+mkdocs==1.5.3
+mkdocstrings[python]==0.24.0
+mkdocs-material==9.5.2
+
+# Testing tools (extra)
+locust==2.20.1
+tox==4.11.4
+pytest-xdist==3.5.0
+pytest-benchmark==4.0.0
+jsonschema==4.20.0
