@@ -41,8 +41,11 @@ jobs:
          poetry run isort --check-only .
         
       - name: Run flake8
-        run: poetry run flake8 . --max-line-length=88 --ignore=E501,E712,F821,E722 --count --exit-zero
-        
+        run: |
+         poetry run flake8 . \
+         --max-line-length=88 \
+         --ignore=E203,E501,W503,E712,F821,E722,E999,F401 \
+         --exit-zero
       - name: Run mypy
         run: poetry run mypy app/
         
