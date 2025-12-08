@@ -1,2 +1,33 @@
+[tool.poetry]
+name = "brandguard-backend"  
+version = "0.1.0"           
+description = "BrandGuard Backend API"
+authors = ["Your Name <you@example.com>"]
+license = "AGPL-3.0"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.104.0"
+uvicorn = {extras = ["standard"], version = "^0.24.0"}
+sqlalchemy = "^2.0.23"
+psycopg2-binary = "^2.9.9"
+redis = "^5.0.0"
+celery = "^5.3.4"
+transformers = "^4.36.0"
+pydantic = "^2.5.0"
+httpx = "^0.25.2"
+python-multipart = "^0.0.6"
+
 [tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "^4.1.0"
 black = "^23.11.0"
+flake8 = "^6.1.0"
+mypy = "^1.7.0"
+isort = "^5.12.0"
+bandit = "^1.7.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
