@@ -262,9 +262,7 @@ class TrendAnalyzer:
         momentum = trends_data["momentum"]
         volatility = trends_data["volatility"]
 
-        if trend == "improving":
-            summary = f"Reputation is improving with a momentum of {
-                momentum:.2%}. "
+        if trend ==  "
         elif trend == "declining":
             summary = f"Reputation is declining with a momentum of {
                     abs(momentum):.2%}. "
