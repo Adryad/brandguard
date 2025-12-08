@@ -12,3 +12,4 @@ isort
 flake8
 mypy
 pytest
+structlog
