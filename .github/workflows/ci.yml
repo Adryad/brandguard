@@ -25,7 +25,8 @@ jobs:
         uses: snok/install-poetry@v1
         
       - name: Install dependencies
-        run: poetry install
+        working-directory: ./backend
+        run: pip install -r requirements.txt
         
       - name: Run black formatting check
         run: poetry run black --check .
@@ -40,6 +41,7 @@ jobs:
         run: poetry run mypy app/
         
       - name: Run tests
+        working-directory: ./backend
         run: poetry run pytest tests/ --cov=app --cov-report=xml
         
       - name: Upload coverage
