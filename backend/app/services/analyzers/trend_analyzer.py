@@ -1,14 +1,13 @@
 # brandguard/backend/app/services/analyzers/trend_analyzer.py
-import logging
-from datetime import datetime, timedelta
-from typing import Dict, List
-
 import numpy as np
-import pandas as pd
-from sklearn.linear_model import LinearRegression
+from typing import List, Dict, Optional
+from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
-
 from app.models.sentiment import Article, Review
+import pandas as pd
+from statsmodels.tsa.seasonal import seasonal_decompose
+from sklearn.linear_model import LinearRegression
+import logging
 
 logger = logging.getLogger(__name__)
 
@@ -262,10 +261,12 @@ class TrendAnalyzer:
         momentum = trends_data["momentum"]
         volatility = trends_data["volatility"]
 
-        if trend ==  "
+        if trend == "improving":
+            summary = f"Reputation is improving with a momentum of {momentum:.2%}. "
         elif trend == "declining":
-            summary = f"Reputation is declining with a momentum of {
-                    abs(momentum):.2%}. "
+            summary = (
+                f"Reputation is declining with a momentum of {abs(momentum):.2%}. "
+            )
         else:
             summary = "Reputation trend is stable. "
 
