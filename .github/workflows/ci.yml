@@ -47,7 +47,8 @@ jobs:
          --ignore=E203,E501,W503,E712,F821,E722,E999,F401 \
          --exit-zero
       - name: Run mypy
-        run: poetry run mypy app/
+        run: |
+         poetry run mypy --ignore-missing-imports --warn-unused-ignores app/
         
       - name: Run tests
         working-directory: ./backend
