@@ -62,7 +62,7 @@ def list_companies(
     """
     List all monitored companies with optional filters
     """
-    query = db.query(Company).filter(Company.is_active == True)
+    query = db.query(Company).filter(Company.is_active)
 
     if industry:
         query = query.filter(Company.industry == industry)
@@ -85,9 +85,7 @@ def get_company(
     Get detailed company information
     """
     company = (
-        db.query(Company)
-        .filter(Company.id == company_id, Company.is_active == True)
-        .first()
+        db.query(Company).filter(Company.id == company_id, Company.is_active).first()
     )
 
     if not company:
@@ -107,9 +105,7 @@ def get_company_trends(
     Get trend analysis for a company
     """
     company = (
-        db.query(Company)
-        .filter(Company.id == company_id, Company.is_active == True)
-        .first()
+        db.query(Company).filter(Company.id == company_id, Company.is_active).first()
     )
 
     if not company:
@@ -138,9 +134,7 @@ async def refresh_company_data(
     Manually trigger data refresh for a company
     """
     company = (
-        db.query(Company)
-        .filter(Company.id == company_id, Company.is_active == True)
-        .first()
+        db.query(Company).filter(Company.id == company_id, Company.is_active).first()
     )
 
     if not company:
@@ -185,9 +179,7 @@ def update_company(
     Update company information
     """
     company = (
-        db.query(Company)
-        .filter(Company.id == company_id, Company.is_active == True)
-        .first()
+        db.query(Company).filter(Company.id == company_id, Company.is_active).first()
     )
 
     if not company:
@@ -214,9 +206,7 @@ def delete_company(
     Soft delete a company (set is_active to False)
     """
     company = (
-        db.query(Company)
-        .filter(Company.id == company_id, Company.is_active == True)
-        .first()
+        db.query(Company).filter(Company.id == company_id, Company.is_active).first()
     )
 
     if not company:

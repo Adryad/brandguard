@@ -55,8 +55,8 @@ class LegalNewsCollector:
             self.db.query(DataSource)
             .filter(
                 DataSource.source_type == "news",
-                DataSource.is_active == True,
-                DataSource.terms_accepted == True,
+                DataSource.is_active,
+                DataSource.terms_accepted,
             )
             .all()
         )

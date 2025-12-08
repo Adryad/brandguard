@@ -19,7 +19,7 @@ sentiment_pipeline = pipeline(
 # Load spacy model for entity recognition
 try:
     nlp = spacy.load("en_core_web_sm")
-except:
+except Exception:
     nlp = None
     logger.warning("Spacy model not found. Entity extraction disabled.")
 
