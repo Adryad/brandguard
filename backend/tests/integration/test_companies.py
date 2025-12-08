@@ -5,16 +5,15 @@ from app.main import app
 from tests.conftest import *
 from sqlalchemy.ext.asyncio import AsyncSession
 
+
 class TestCompaniesAPI:
     @pytest.mark.asyncio
-    async def test_create_company(self, async_client: AsyncClient, db_session: AsyncSession):
+    async def test_create_company(
+        self, async_client: AsyncClient, db_session: AsyncSession
+    ):
         """Test creating a company via API"""
-        company_data = {
-            "name": "Test Corp",
-            "industry": "technology",
-            "country": "USA"
-        }
-        
+        company_data = {"name": "Test Corp", "industry": "technology", "country": "USA"}
+
         response = await async_client.post("/api/v1/companies", json=company_data)
         assert response.status_code == 201
         data = response.json()

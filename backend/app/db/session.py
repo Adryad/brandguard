@@ -13,7 +13,7 @@ engine = create_engine(
     max_overflow=20,
     pool_pre_ping=True,
     pool_recycle=300,
-    echo=False  # Set True for debugging
+    echo=False,  # Set True for debugging
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -25,11 +25,11 @@ redis_client = redis.from_url(
     decode_responses=True,
     socket_keepalive=True,
     socket_keepalive_options={
-        'tcp_keepalive': 1,
-        'tcp_keepalive_time': 300,
-        'tcp_keepalive_interval': 10,
-        'tcp_keepalive_probes': 5
-    }
+        "tcp_keepalive": 1,
+        "tcp_keepalive_time": 300,
+        "tcp_keepalive_interval": 10,
+        "tcp_keepalive_probes": 5,
+    },
 )
 
 # Elasticsearch client (from elasticsearch library in requirements.txt)
@@ -38,8 +38,9 @@ es_client = Elasticsearch(
     verify_certs=False,
     ssl_show_warn=False,
     max_retries=3,
-    retry_on_timeout=True
+    retry_on_timeout=True,
 )
+
 
 def get_db():
     """Database session dependency"""
@@ -49,9 +50,11 @@ def get_db():
     finally:
         db.close()
 
+
 def get_redis():
     """Redis client dependency"""
     return redis_client
+
 
 def get_elasticsearch():
     """Elasticsearch client dependency"""
