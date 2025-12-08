@@ -10,7 +10,10 @@ class TestCompaniesAPI:
         self, async_client: AsyncClient, db_session: AsyncSession
     ):
         """Test creating a company via API"""
-        company_data = {"name": "Test Corp", "industry": "technology", "country": "USA"}
+        company_data = {
+            "name": "Test Corp",
+            "industry": "technology",
+            "country": "USA"}
 
         response = await async_client.post("/api/v1/companies", json=company_data)
         assert response.status_code == 201
@@ -19,7 +22,10 @@ class TestCompaniesAPI:
         assert "id" in data
 
     @pytest.mark.asyncio
-    async def test_list_companies(self, async_client: AsyncClient, test_company):
+    async def test_list_companies(
+            self,
+            async_client: AsyncClient,
+            test_company):
         """Test listing companies with pagination"""
         response = await async_client.get("/api/v1/companies?limit=10&skip=0")
         assert response.status_code == 200

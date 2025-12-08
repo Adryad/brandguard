@@ -33,7 +33,10 @@ class Company(Base):
     sources_config = Column(JSON, default=dict)  # Data source configurations
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    updated_at = Column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow)
     last_analyzed = Column(DateTime, nullable=True)
 
 
@@ -42,7 +45,8 @@ class DataSource(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
-    source_type = Column(String, index=True)  # news, reviews, social, financial
+    # news, reviews, social, financial
+    source_type = Column(String, index=True)
     url = Column(String, nullable=False)
     api_endpoint = Column(String, nullable=True)
     credibility_score = Column(Float, default=0.8)  # 0-1

@@ -85,8 +85,9 @@ def get_company(
     Get detailed company information
     """
     company = (
-        db.query(Company).filter(Company.id == company_id, Company.is_active).first()
-    )
+        db.query(Company).filter(
+            Company.id == company_id,
+            Company.is_active).first())
 
     if not company:
         raise HTTPException(status_code=404, detail="Company not found")
@@ -105,8 +106,9 @@ def get_company_trends(
     Get trend analysis for a company
     """
     company = (
-        db.query(Company).filter(Company.id == company_id, Company.is_active).first()
-    )
+        db.query(Company).filter(
+            Company.id == company_id,
+            Company.is_active).first())
 
     if not company:
         raise HTTPException(status_code=404, detail="Company not found")
@@ -134,8 +136,9 @@ async def refresh_company_data(
     Manually trigger data refresh for a company
     """
     company = (
-        db.query(Company).filter(Company.id == company_id, Company.is_active).first()
-    )
+        db.query(Company).filter(
+            Company.id == company_id,
+            Company.is_active).first())
 
     if not company:
         raise HTTPException(status_code=404, detail="Company not found")
@@ -179,8 +182,9 @@ def update_company(
     Update company information
     """
     company = (
-        db.query(Company).filter(Company.id == company_id, Company.is_active).first()
-    )
+        db.query(Company).filter(
+            Company.id == company_id,
+            Company.is_active).first())
 
     if not company:
         raise HTTPException(status_code=404, detail="Company not found")
@@ -206,8 +210,9 @@ def delete_company(
     Soft delete a company (set is_active to False)
     """
     company = (
-        db.query(Company).filter(Company.id == company_id, Company.is_active).first()
-    )
+        db.query(Company).filter(
+            Company.id == company_id,
+            Company.is_active).first())
 
     if not company:
         raise HTTPException(status_code=404, detail="Company not found")

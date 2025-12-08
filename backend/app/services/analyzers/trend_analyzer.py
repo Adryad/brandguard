@@ -30,16 +30,14 @@ class TrendAnalyzer:
 
         # Get articles and reviews
         articles = (
-            self.db.query(Article)
-            .filter(Article.company_id == company_id, Article.created_at >= start_date)
-            .all()
-        )
+            self.db.query(Article) .filter(
+                Article.company_id == company_id,
+                Article.created_at >= start_date) .all())
 
         reviews = (
-            self.db.query(Review)
-            .filter(Review.company_id == company_id, Review.created_at >= start_date)
-            .all()
-        )
+            self.db.query(Review) .filter(
+                Review.company_id == company_id,
+                Review.created_at >= start_date) .all())
 
         # Combine data
         data_points = []
@@ -48,11 +46,11 @@ class TrendAnalyzer:
             data_points.append(
                 {
                     "date": article.created_at.date(),
-                    "sentiment_score": self._sentiment_to_score(article.sentiment),
+                    "sentiment_score": self._sentiment_to_score(
+                        article.sentiment),
                     "confidence": article.confidence_score,
                     "type": "article",
-                }
-            )
+                })
 
         for review in reviews:
             data_points.append(
@@ -118,7 +116,8 @@ class TrendAnalyzer:
             if not pd.isna(df["ma_7"].iloc[-1])
             else df["sentiment_score"].iloc[-1]
         )
-        older_ma = df["ma_7"].iloc[-8] if len(df) > 8 else df["sentiment_score"].iloc[0]
+        older_ma = df["ma_7"].iloc[-8] if len(
+            df) > 8 else df["sentiment_score"].iloc[0]
 
         momentum = recent_ma - older_ma
 
@@ -133,7 +132,10 @@ class TrendAnalyzer:
             "trend": trend,
             "momentum": momentum,
             "recent_score": recent_ma,
-            "change_percentage": (momentum / older_ma) * 100 if older_ma > 0 else 0,
+            "change_percentage": (
+                momentum /
+                older_ma) *
+            100 if older_ma > 0 else 0,
         }
 
     def _detect_seasonal_patterns(self, data_points: List[Dict]) -> List[Dict]:
@@ -172,9 +174,10 @@ class TrendAnalyzer:
                         "type": "weekly",
                         "period": days[i],
                         "score": score,
-                        "significance": "high" if abs(score - 0.5) > 0.2 else "medium",
-                    }
-                )
+                        "significance": "high" if abs(
+                            score -
+                            0.5) > 0.2 else "medium",
+                    })
 
         months = [
             "Jan",
@@ -203,7 +206,10 @@ class TrendAnalyzer:
 
         return patterns
 
-    def _predict_future(self, data_points: List[Dict], days: int = 30) -> List[Dict]:
+    def _predict_future(
+            self,
+            data_points: List[Dict],
+            days: int = 30) -> List[Dict]:
         """
         Predict future sentiment trends
         """
@@ -263,11 +269,12 @@ class TrendAnalyzer:
         volatility = trends_data["volatility"]
 
         if trend == "improving":
-            summary = f"Reputation is improving with a momentum of {momentum:.2%}. "
+            summary = f"Reputation is improving with a momentum of {
+                momentum:.2%}. "
         elif trend == "declining":
             summary = (
-                f"Reputation is declining with a momentum of {abs(momentum):.2%}. "
-            )
+                f"Reputation is declining with a momentum of {
+                    abs(momentum):.2%}. ")
         else:
             summary = "Reputation trend is stable. "
 

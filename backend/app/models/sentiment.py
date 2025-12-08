@@ -21,7 +21,8 @@ class Article(Base):
     author = Column(String, nullable=True)
 
     # Analysis results
-    sentiment = Column(String, default="neutral")  # positive, negative, neutral
+    # positive, negative, neutral
+    sentiment = Column(String, default="neutral")
     confidence_score = Column(Float, default=0.0)  # 0-1
     keywords = Column(JSON, default=list)
     entities = Column(JSON, default=list)
