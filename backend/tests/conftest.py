@@ -34,12 +34,13 @@ sys.modules["structlog"].get_logger = Mock(return_value=Mock())
 sys.modules["prometheus_fastapi_instrumentator"].Instrumentator = Mock(
     return_value=Mock()
 )
-sys.modules['app.core.config'] = type(sys)('config')
-sys.modules['app.core.config'].settings = type(sys)('settings')
-sys.modules['app.core.config'].settings.API_V1_STR = "/api/v1"  # بدون /
+sys.modules["app.core.config"] = type(sys)("config")
+sys.modules["app.core.config"].settings = type(sys)("settings")
+sys.modules["app.core.config"].settings.API_V1_STR = "/api/v1"  # بدون /
 
 # الآن يمكن استيراد app
 from app.main import app
+
 
 # إنشاء تطبيق FastAPI للاختبار
 @pytest.fixture(scope="session")
