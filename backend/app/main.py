@@ -91,6 +91,11 @@ class BrandGuardApp:
         ).instrument(self.app).expose(self.app, should_gzip=True)
 
     def setup_routes(self):
+        """Setup API routes."""
+        # تأكد أن prefix لا ينتهي بـ /
+        api_prefix = settings.API_V1_STR.rstrip('/')
+        self.app.include_router(api_router, prefix=api_prefix)
+        
         """Setup API routes and error handlers"""
         # Include API router
         self.app.include_router(api_router, prefix=settings.API_V1_STR)
