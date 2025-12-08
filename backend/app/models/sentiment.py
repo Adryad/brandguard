@@ -1,17 +1,6 @@
-from sqlalchemy import (
-    Boolean,
-    Column,
-    DateTime,
-    Float,
-    ForeignKey,
-    Integer,
-    String,
-    Text,
-)
-
 # brandguard/backend/app/models/sentiment.py
 from datetime import datetime
-
+from sqlalchemy import Boolean
 from sqlalchemy import JSON, Column, DateTime, Float, ForeignKey, Integer, String, Text
 
 from app.db.base import Base

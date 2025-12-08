@@ -1,7 +1,6 @@
 import uuid
 from datetime import datetime
 from fastapi import HTTPException
-
 # brandguard/backend/app/main.py (Updated with requirements dependencies)
 from contextlib import asynccontextmanager
 
