@@ -36,12 +36,12 @@ sys.modules["prometheus_fastapi_instrumentator"].Instrumentator = Mock(
 )
 sys.modules["app.core.config"] = type(sys)("config")
 sys.modules["app.core.config"].settings = type(sys)("settings")
-sys.modules['app.core.config'] = Mock()
-sys.modules['app.core.config'].settings = Mock()
-sys.modules['app.core.config'].settings.PROJECT_NAME = "BrandGuard"
-sys.modules['app.core.config'].settings.API_V1_STR = "/api/v1"
-sys.modules['app.core.config'].settings.DATABASE_URL = None
-sys.modules['app.core.config'].settings.SECRET_KEY = "test"
+sys.modules["app.core.config"] = Mock()
+sys.modules["app.core.config"].settings = Mock()
+sys.modules["app.core.config"].settings.PROJECT_NAME = "BrandGuard"
+sys.modules["app.core.config"].settings.API_V1_STR = "/api/v1"
+sys.modules["app.core.config"].settings.DATABASE_URL = None
+sys.modules["app.core.config"].settings.SECRET_KEY = "test"
 
 # الآن يمكن استيراد app
 try:
@@ -49,18 +49,21 @@ try:
 except Exception as e:
     # إذا فشل، أنشئ تطبيقاً وهمياً
     app = FastAPI(title="Test API")
-    
+
     @app.get("/health")
     def health():
         return {"status": "ok"}
+
 
 @pytest.fixture
 def client():
     return TestClient(app)
 
+
 @pytest.fixture
 def test_app():
     return app
+
 
 # إنشاء تطبيق FastAPI للاختبار
 @pytest.fixture(scope="session")
