@@ -1,13 +1,12 @@
 # brandguard/backend/app/services/analyzers/trend_analyzer.py
 import logging
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sqlalchemy.orm import Session
-from statsmodels.tsa.seasonal import seasonal_decompose
 
 from app.models.sentiment import Article, Review
 

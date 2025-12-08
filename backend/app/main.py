@@ -1,5 +1,4 @@
 # brandguard/backend/app/main.py (Updated with requirements dependencies)
-import logging
 from contextlib import asynccontextmanager
 
 import structlog

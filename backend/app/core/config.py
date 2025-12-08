@@ -1,6 +1,5 @@
 # brandguard/backend/app/core/config.py (Updated)
-import os
-from typing import List, Optional
+from typing import Optional
 
 from pydantic_settings import BaseSettings
 

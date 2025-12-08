@@ -1,11 +1,10 @@
 # brandguard/backend/app/services/analyzers/risk_scorer.py
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import numpy as np
 from sqlalchemy.orm import Session
 
-from app.models.company import Company
 from app.models.sentiment import Article, Review
 
 
