@@ -5,7 +5,6 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "BrandGuard"
     """BrandGuard configuration using Pydantic Settings"""
 
     # Database and Core Settings

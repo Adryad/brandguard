@@ -39,6 +39,13 @@ class BrandGuardApp:
     """BrandGuard FastAPI application with requirements integration"""
 
     def __init__(self):
+        try:
+            from app.core.config import settings
+
+            project_name = settings.PROJECT_NAME
+        except (ImportError, AttributeError):
+            # قيمة افتراضية إذا لم يكن موجوداً
+            project_name = "BrandGuard"
         self.app = FastAPI(
             title=settings.PROJECT_NAME,
             version="1.0.0",
