@@ -196,3 +196,11 @@ class RiskScorer:
         elif isinstance(item, Review):
             return item.rating / 5.0
         return 0.5
+
+
+# Type hints for mypy
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from sqlalchemy import Column
+    from app.models.company import Company

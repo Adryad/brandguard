@@ -1,3 +1,5 @@
+import uuid
+
 # brandguard/backend/app/api/v1/endpoints/companies.py
 from typing import List, Optional
 

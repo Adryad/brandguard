@@ -1,3 +1,5 @@
+from app.core.config import settings
+
 # brandguard/backend/app/services/data_collectors/news_collector.py
 import asyncio
 import logging
