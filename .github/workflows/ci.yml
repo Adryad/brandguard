@@ -36,6 +36,7 @@ jobs:
         run: poetry run black --check .
         
       - name: Run isort
+        run: poetry run isort .
         run: poetry run isort --check-only .
         
       - name: Run flake8
