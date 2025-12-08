@@ -8,3 +8,4 @@ transformers==4.36.0
 pydantic==2.5.0
 httpx==0.25.2
 black
+isort
