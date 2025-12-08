@@ -1,13 +1,15 @@
 # brandguard/backend/tests/conftest.py
-import pytest
 import asyncio
+
+import pytest
 from httpx import AsyncClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from app.main import app
-from app.db.session import get_db
+
 from app.db.base import Base
-from tests.factories import CompanyFactory, ArticleFactory
+from app.db.session import get_db
+from app.main import app
+from tests.factories import ArticleFactory, CompanyFactory
 
 # Override test database
 SQLALCHEMY_DATABASE_URL = (

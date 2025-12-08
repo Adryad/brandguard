@@ -1,8 +1,10 @@
 # brandguard/backend/app/models/company.py
-from sqlalchemy import Column, Integer, String, Float, DateTime, JSON, Boolean
-from sqlalchemy.sql import func
-from app.db.base import Base
 from datetime import datetime
+
+from sqlalchemy import JSON, Boolean, Column, DateTime, Float, Integer, String
+from sqlalchemy.sql import func
+
+from app.db.base import Base
 
 
 class Company(Base):

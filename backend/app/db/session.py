@@ -1,10 +1,11 @@
 # brandguard/backend/app/db/session.py (Updated)
+import redis
+from elasticsearch import Elasticsearch
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+
 from app.core.config import settings
-import redis
-from elasticsearch import Elasticsearch
 
 # Create engine with connection pooling (configured via requirements.txt)
 engine = create_engine(

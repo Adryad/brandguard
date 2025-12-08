@@ -1,5 +1,6 @@
 # brandguard/backend/tests/test_sentiment_analyzer.py
 import pytest
+
 from app.services.analyzers.sentiment_analyzer import (
     analyze_sentiment,
     calculate_overall_sentiment,

@@ -1,16 +1,18 @@
 # brandguard/backend/app/main.py (Updated with requirements dependencies)
+import logging
+from contextlib import asynccontextmanager
+
+import structlog
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import JSONResponse
-import logging
-import structlog
-from contextlib import asynccontextmanager
+from prometheus_fastapi_instrumentator import Instrumentator
+
 from app.api.v1.api import api_router
 from app.core.config import settings
 from app.db.base import Base
-from app.db.session import engine, get_db, redis_client, es_client
-from prometheus_fastapi_instrumentator import Instrumentator
+from app.db.session import engine, es_client, get_db, redis_client
 
 # Configure structured logging (from requirements.txt)
 structlog.configure(

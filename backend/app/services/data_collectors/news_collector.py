@@ -1,16 +1,18 @@
 # brandguard/backend/app/services/data_collectors/news_collector.py
 import asyncio
-import aiohttp
+import logging
+import re
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
-from typing import List, Dict, Optional
+from typing import Dict, List, Optional
+
+import aiohttp
+from bs4 import BeautifulSoup
 from sqlalchemy.orm import Session
+
 from app.models.company import Company, DataSource
 from app.models.sentiment import Article
 from app.services.analyzers.sentiment_analyzer import analyze_sentiment
-import logging
-from bs4 import BeautifulSoup
-import re
 
 logger = logging.getLogger(__name__)
 

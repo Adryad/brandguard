@@ -1,9 +1,10 @@
 # brandguard/backend/tests/integration/test_companies.py
 import pytest
 from httpx import AsyncClient
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.main import app
 from tests.conftest import *
-from sqlalchemy.ext.asyncio import AsyncSession
 
 
 class TestCompaniesAPI:

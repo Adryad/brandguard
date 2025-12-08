@@ -1,7 +1,9 @@
 # brandguard/backend/tests/factories.py
+from datetime import datetime
+
 import factory
 from factory.alchemy import SQLAlchemyModelFactory
-from datetime import datetime
+
 from app.models.company import Company, DataSource
 from app.models.sentiment import Article, Review
 

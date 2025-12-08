@@ -1,10 +1,11 @@
 # brandguard/backend/app/services/analyzers/sentiment_analyzer.py
-from transformers import pipeline
-from typing import Dict, List
-import re
 import logging
+import re
 from collections import Counter
+from typing import Dict, List
+
 import spacy
+from transformers import pipeline
 
 logger = logging.getLogger(__name__)
 

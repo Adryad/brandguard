@@ -1,13 +1,15 @@
 # brandguard/backend/app/api/v1/endpoints/companies.py
+from typing import List, Optional
+
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from typing import List, Optional
+
+from app.core.security import get_current_user
 from app.db.session import get_db
 from app.models.company import Company
 from app.schemas.company import CompanyCreate, CompanyResponse, CompanyUpdate
 from app.services.analyzers.trend_analyzer import TrendAnalyzer
 from app.services.data_collectors.news_collector import LegalNewsCollector
-from app.core.security import get_current_user
 
 router = APIRouter()
 

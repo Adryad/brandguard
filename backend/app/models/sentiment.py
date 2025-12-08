@@ -1,8 +1,10 @@
 # brandguard/backend/app/models/sentiment.py
-from sqlalchemy import Column, Integer, String, Float, DateTime, Text, ForeignKey, JSON
-from sqlalchemy.sql import func
-from app.db.base import Base
 from datetime import datetime
+
+from sqlalchemy import JSON, Column, DateTime, Float, ForeignKey, Integer, String, Text
+from sqlalchemy.sql import func
+
+from app.db.base import Base
 
 
 class Article(Base):
