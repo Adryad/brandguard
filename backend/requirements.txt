@@ -10,3 +10,4 @@ httpx==0.25.2
 black
 isort
 flake8
+mypy
