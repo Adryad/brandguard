@@ -21,6 +21,6 @@ class CompanyResponse(CompanyBase):
     id: int
     reputation_score: float = 0.0
     total_mentions: int = 0
-    
+
     class Config:
         from_attributes = True
