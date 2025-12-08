@@ -37,9 +37,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     return encoded_jwt
 
 
-def verify_token(
-        token: str = Depends(oauth2_scheme),
-        db: Session = Depends(get_db)):
+def verify_token(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     """
     Verify JWT token and return current user
     """

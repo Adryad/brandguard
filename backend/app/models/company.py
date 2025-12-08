@@ -33,10 +33,7 @@ class Company(Base):
     sources_config = Column(JSON, default=dict)  # Data source configurations
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(
-        DateTime,
-        default=datetime.utcnow,
-        onupdate=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     last_analyzed = Column(DateTime, nullable=True)
 
 

@@ -122,8 +122,8 @@ class BrandGuardApp:
             except Exception as e:
                 logger.error("Health check failed", error=str(e))
                 return JSONResponse(
-                    status_code=503, content={
-                        "status": "unhealthy", "error": str(e)})
+                    status_code=503, content={"status": "unhealthy", "error": str(e)}
+                )
 
         # Error handlers
         @self.app.exception_handler(Exception)
@@ -144,9 +144,7 @@ class BrandGuardApp:
 
             return JSONResponse(
                 status_code=status_code,
-                content={
-                    "detail": "Internal server error",
-                    "request_id": request_id},
+                content={"detail": "Internal server error", "request_id": request_id},
             )
 
     @asynccontextmanager

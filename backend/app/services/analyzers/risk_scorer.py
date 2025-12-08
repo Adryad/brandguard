@@ -25,14 +25,16 @@ class RiskScorer:
         start_date = end_date - timedelta(days=30)
 
         articles = (
-            self.db.query(Article) .filter(
-                Article.company_id == company_id,
-                Article.created_at >= start_date) .all())
+            self.db.query(Article)
+            .filter(Article.company_id == company_id, Article.created_at >= start_date)
+            .all()
+        )
 
         reviews = (
-            self.db.query(Review) .filter(
-                Review.company_id == company_id,
-                Review.created_at >= start_date) .all())
+            self.db.query(Review)
+            .filter(Review.company_id == company_id, Review.created_at >= start_date)
+            .all()
+        )
 
         # Calculate risk factors
         sentiment_risk = self._calculate_sentiment_risk(articles, reviews)
@@ -177,10 +179,7 @@ class RiskScorer:
             return 0
 
         # Get sentiment scores
-        scores = [
-            self._get_sentiment_score(
-                item,
-                score_map) for item in all_items]
+        scores = [self._get_sentiment_score(item, score_map) for item in all_items]
 
         # Calculate standard deviation (higher = more inconsistent)
         std_dev = np.std(scores)

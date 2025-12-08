@@ -31,8 +31,7 @@ class TestSentimentAnalyzer:
 
     def test_batch_sentiment_analysis(self):
         texts = ["Great product", "Bad service", "Kept neutral"]
-        results = calculate_overall_sentiment(
-            [analyze_sentiment(t) for t in texts])
+        results = calculate_overall_sentiment([analyze_sentiment(t) for t in texts])
         assert "positive_ratio" in results
         assert "negative_ratio" in results
         assert "neutral_ratio" in results

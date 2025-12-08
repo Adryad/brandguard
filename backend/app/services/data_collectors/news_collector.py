@@ -48,8 +48,7 @@ class LegalNewsCollector:
         Collect public news articles about a company
         """
         articles = []
-        company_keywords = self._extract_keywords(
-            company.name, company.industry)
+        company_keywords = self._extract_keywords(company.name, company.industry)
 
         # Get active news sources
         sources = (
@@ -76,8 +75,7 @@ class LegalNewsCollector:
         stored_articles = []
         for article_data in articles:
             if self._is_compliant(article_data):
-                article = self._store_article(
-                    company.id, source.id, article_data)
+                article = self._store_article(company.id, source.id, article_data)
                 stored_articles.append(article)
 
         return stored_articles
@@ -109,8 +107,7 @@ class LegalNewsCollector:
                 async with session.get(rss_url) as response:
                     if response.status == 200:
                         content = await response.text()
-                        return self._parse_rss_content(
-                            content, keywords, days_back)
+                        return self._parse_rss_content(content, keywords, days_back)
         except Exception as e:
             logger.error(f"RSS fetch error: {str(e)}")
 
@@ -137,8 +134,7 @@ class LegalNewsCollector:
 
                 if article_data["published_date"] >= cutoff_date:
                     # Check relevance
-                    relevance = self._calculate_relevance(
-                        article_data, keywords)
+                    relevance = self._calculate_relevance(article_data, keywords)
                     if relevance > 0.3:  # 30% relevance threshold
                         article_data["relevance_score"] = relevance
                         articles.append(article_data)
@@ -175,10 +171,7 @@ class LegalNewsCollector:
             "source_type": "rss",
         }
 
-    def _calculate_relevance(
-            self,
-            article: Dict,
-            keywords: List[str]) -> float:
+    def _calculate_relevance(self, article: Dict, keywords: List[str]) -> float:
         """
         Calculate article relevance to company
         """

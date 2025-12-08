@@ -48,8 +48,7 @@ def analyze_sentiment(text: str, confidence_threshold: float = 0.7) -> Dict:
 
     # Perform sentiment analysis
     try:
-        result = sentiment_pipeline(clean_text[:512])[
-            0]  # Truncate to model max length
+        result = sentiment_pipeline(clean_text[:512])[0]  # Truncate to model max length
         sentiment = result["label"].lower()
         confidence = result["score"]
 
