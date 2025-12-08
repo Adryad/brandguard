@@ -9,3 +9,4 @@ pydantic==2.5.0
 httpx==0.25.2
 black
 isort
+flake8
