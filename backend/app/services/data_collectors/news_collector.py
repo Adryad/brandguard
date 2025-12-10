@@ -4,7 +4,7 @@ from app.core.config import settings
 import asyncio
 import logging
 import re
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree as ET
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
 
@@ -15,6 +15,8 @@ from sqlalchemy.orm import Session
 from app.models.company import Company, DataSource
 from app.models.sentiment import Article
 from app.services.analyzers.sentiment_analyzer import analyze_sentiment
+
+defusedxml.defuse_stdlib()
 
 logger = logging.getLogger(__name__)
 
