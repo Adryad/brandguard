@@ -219,8 +219,17 @@ jobs:
           npx playwright install --with-deps
         
       - name: Run E2E tests
+        working-directory: ./frontend
         run: |
           npm install -D @playwright/test
           npx playwright install --with-deps
+          npm run dev &
+          sleep 10
+          npx playwright test --reporter=html || echo "Tests completed"
+          if [ -d playwright-report ]; then
+           echo "Uploading report..."
+          fi
           npm run test:e2e
-        working-directory: frontend
+
+
+
