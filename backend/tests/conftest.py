@@ -1,21 +1,21 @@
 import pytest
-import asyncio
+import pytest_asyncio
 from typing import AsyncGenerator
 from fastapi.testclient import TestClient
 from httpx import AsyncClient
 from fastapi import FastAPI
 
 
-# Register markers
+# Register marks
 def pytest_configure(config):
     config.addinivalue_line("markers", "asyncio: async test")
     config.addinivalue_line("markers", "integration: integration test")
-    config.addinivalue_line("markers", "unit: unit test")
 
 
-# Test app
+# Regular sync fixtures
 @pytest.fixture
 def app():
+    """Create test FastAPI app."""
     app = FastAPI(title="BrandGuard Test")
 
     @app.get("/health")
@@ -24,30 +24,32 @@ def app():
 
     @app.get("/api/v1/companies")
     async def get_companies():
-        return [{"id": 1, "name": "Test Company", "industry": "tech"}]
+        return [{"id": 1, "name": "Test Company"}]
 
     @app.post("/api/v1/companies")
     async def create_company():
-        return {"id": 1, "status": "created"}
+        return {"id": 1, "name": "Created Company"}
 
     return app
 
 
-# Clients
 @pytest.fixture
 def client(app):
+    """Sync test client."""
     return TestClient(app)
 
 
-@pytest.fixture
-async def async_client(app):
+# Async fixtures using pytest_asyncio
+@pytest_asyncio.fixture
+async def async_client(app) -> AsyncGenerator[AsyncClient, None]:
+    """Async test client."""
     async with AsyncClient(app=app, base_url="http://test") as ac:
         yield ac
 
 
-# Database mocks
-@pytest.fixture
+@pytest_asyncio.fixture
 async def db_session():
+    """Mock database session."""
     from unittest.mock import AsyncMock
 
     session = AsyncMock()
@@ -58,7 +60,6 @@ async def db_session():
     yield session
 
 
-# Test data
 @pytest.fixture
 def test_company():
-    return {"id": 1, "name": "Test Corp", "industry": "technology"}
+    return {"id": 1, "name": "Test Company"}
