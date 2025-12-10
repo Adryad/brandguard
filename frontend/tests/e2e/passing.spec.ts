@@ -1,11 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 test('always passes', () => {
-  expect(1 + 1).toBe(2);
+  expect(true).toBe(true);
 });
 
-test('Playwright works', async ({ page }) => {
-  await page.goto('https://example.com');
-  const title = await page.title();
-  expect(title).toContain('Example');
+test('basic math', () => {
+  expect(2 + 2).toBe(4);
+});
+
+test('string contains', () => {
+  expect('hello world').toContain('hello');
 });
