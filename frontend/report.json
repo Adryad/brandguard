@@ -155,13 +155,13 @@
   "suites": [],
   "errors": [
     {
-      "message": "Error: Process from config.webServer exited early.",
-      "stack": "Error: Process from config.webServer exited early."
+      "message": "Error: Timed out waiting 120000ms from config.webServer.",
+      "stack": "Error: Timed out waiting 120000ms from config.webServer."
     }
   ],
   "stats": {
-    "startTime": "2025-12-10T12:01:48.129Z",
-    "duration": 81119.138,
+    "startTime": "2025-12-10T12:20:35.294Z",
+    "duration": 120336.817,
     "expected": 0,
     "skipped": 0,
     "unexpected": 0,
