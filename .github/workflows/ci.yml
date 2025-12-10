@@ -152,6 +152,25 @@ jobs:
         npm run test:component
         npm run build
         echo "🎉 All quality checks passed!"
+    - name: Install dependencies
+      run: npm ci
+        
+    - name: Run ESLint
+      run: npm run lint
+        
+    - name: Run type checking
+      run: npm run type-check
+        
+    - name: Run unit tests
+      run: npm run test:unit
+        
+    - name: Run component tests
+      run: npm run test:component
+        
+    - name: Upload coverage
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage/coverage-final.json   
   security:
     runs-on: ubuntu-latest
     steps:
