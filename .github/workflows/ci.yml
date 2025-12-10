@@ -153,7 +153,9 @@ jobs:
         npm run build
         echo "🎉 All quality checks passed!"
     - name: Install dependencies
-      run: npm ci
+      run: |
+       npm install  
+       npm ci
         
     - name: Run ESLint
       run: npm run lint
