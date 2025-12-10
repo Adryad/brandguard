@@ -216,12 +216,7 @@ jobs:
          node --version
          npm --version
       
-      - name: Install dependencies
-        working-directory: ./frontend
-        run: |
-          npm ci
-          npm install -D @playwright/test
-          npx playwright install --with-deps chromium
+
       
       - name: Create basic test file
         working-directory: ./frontend
