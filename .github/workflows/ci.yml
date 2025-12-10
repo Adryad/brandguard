@@ -153,20 +153,25 @@ jobs:
         npm run build
         echo "🎉 All quality checks passed!"
     - name: Install dependencies
+      working-directory: ./frontend
       run: |
        npm install  
        npm ci
         
     - name: Run ESLint
+      working-directory: ./frontend
       run: npm run lint
         
     - name: Run type checking
+      working-directory: ./frontend
       run: npm run type-check
         
     - name: Run unit tests
+      working-directory: ./frontend
       run: npm run test:unit
         
     - name: Run component tests
+      working-directory: ./frontend
       run: npm run test:component
         
     - name: Upload coverage
