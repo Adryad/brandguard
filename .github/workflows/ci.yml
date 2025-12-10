@@ -247,11 +247,12 @@ jobs:
       - name: Install Playwright browsers with dependencies
         working-directory: ./frontend
         run: |
-         # Install the modern system dependency that replaces 'libasound2'
-         sudo apt-get update
-         sudo apt-get install -y libasound2
-         # Proceed with installing browsers
-         npx playwright install --with-deps chromium
+          # Manually install the correct system dependencies for Ubuntu 24.04
+          sudo apt-get update
+          sudo apt-get install -y libasound2t64 libgtk2.0-0t64 libgtk-3-0t64
+          # Tell Playwright not to manage system deps and install only the browser
+          npx playwright install --with-deps chromium --dry-run | grep -oP 'sudo apt-get install --no-install-recommends \K.*' | xargs -r sudo apt-get install -y
+          npx playwright install chromium
 
       - name: Run smoke tests
         working-directory: ./frontend
