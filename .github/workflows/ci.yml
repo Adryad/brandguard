@@ -249,9 +249,10 @@ jobs:
         run: |
          # Install the modern system dependency that replaces 'libasound2'
          sudo apt-get update
-         sudo apt-get install -y libasound2t64
+         sudo apt-get install -y libasound2
          # Proceed with installing browsers
          npx playwright install --with-deps chromium
+
       - name: Run smoke tests
         working-directory: ./frontend
         run: |
