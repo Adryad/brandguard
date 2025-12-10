@@ -217,6 +217,8 @@ jobs:
         run: |
           npm install -g @playwright/test
           npx playwright install --with-deps
+          npm install -D @playwright/test
+          npx playwright install
         
       - name: Run E2E tests
         run: |
