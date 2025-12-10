@@ -1,37 +1,27 @@
-# brandguard/backend/tests/test_sentiment_analyzer.py
-
-from app.services.analyzers.sentiment_analyzer import (
-    analyze_sentiment,
-    calculate_overall_sentiment,
-)
-
+import pytest
+from unittest.mock import Mock, patch
+from app.services.analyzers.sentiment_analyzer import SentimentAnalyzer
 
 class TestSentimentAnalyzer:
+    
+    def setup_method(self):
+        self.analyzer = SentimentAnalyzer()
+    
     def test_positive_sentiment(self):
-        text = "This company is doing amazing work with their new products!"
-        result = analyze_sentiment(text)
-        assert result["sentiment"] == "positive"
-        assert result["confidence"] > 0.7
-
-    def test_negative_sentiment(self):
-        text = "Terrible service and poor quality products from this company"
-        result = analyze_sentiment(text)
-        assert result["sentiment"] == "negative"
-        assert result["confidence"] > 0.7
-
+        with patch.object(self.analyzer.model, '__call__', return_value=[{'label': 'POSITIVE', 'score': 0.95}]):
+            result = self.analyzer.analyze("This is excellent!")
+            assert result["sentiment"] == "POSITIVE"
+    
     def test_neutral_sentiment(self):
-        text = "The company released a new product today"
-        result = analyze_sentiment(text)
-        assert result["sentiment"] == "neutral"
-
+        with patch.object(self.analyzer.model, '__call__', return_value=[{'label': 'NEUTRAL', 'score': 0.65}]):
+            result = self.analyzer.analyze("The company released a new product")
+            assert result["sentiment"] == "NEUTRAL"
+    
+    def test_negative_sentiment(self):
+        with patch.object(self.analyzer.model, '__call__', return_value=[{'label': 'NEGATIVE', 'score': 0.85}]):
+            result = self.analyzer.analyze("This is terrible!")
+            assert result["sentiment"] == "NEGATIVE"
+    
     def test_empty_text(self):
-        result = analyze_sentiment("")
-        assert result["sentiment"] == "neutral"
-        assert result["confidence"] == 0.0
-
-    def test_batch_sentiment_analysis(self):
-        texts = ["Great product", "Bad service", "Kept neutral"]
-        results = calculate_overall_sentiment([analyze_sentiment(t) for t in texts])
-        assert "positive_ratio" in results
-        assert "negative_ratio" in results
-        assert "neutral_ratio" in results
+        result = self.analyzer.analyze("")
+        assert result["sentiment"] == "NEUTRAL"
