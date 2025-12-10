@@ -219,6 +219,7 @@ jobs:
           npx playwright install --with-deps
           npm install -D @playwright/test
           npx playwright install
+          npm install --save-dev vite @vitejs/plugin-vue playwright
         
       - name: Run E2E tests
         run: |
