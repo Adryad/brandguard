@@ -198,68 +198,27 @@ jobs:
 
   e2e:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Install Node.js directly
-        run: |
-         # تثبيت Node.js مباشرة من apt
-         sudo apt-get update
-         sudo apt-get install -y ca-certificates curl gnupg
-         sudo mkdir -p /etc/apt/keyrings
-         curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-         echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-         sudo apt-get update
-         sudo apt-get install nodejs -y
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_brandguard
+        ports: ['5432:5432']
         
-         # تحقق
-         node --version
-         npm --version
+      redis:
+        image: redis:7-alpine
+        ports: ['6379:6379']
+        
+    steps:
+      - uses: actions/checkout@v4
       
-
-      
-      - name: Create basic test file
-        working-directory: ./frontend
+      - name: Install Playwright
         run: |
-          cat > tests/e2e/smoke.spec.ts << 'EOF'
-          import { test, expect } from '@playwright/test';
-          
-          test.describe('Smoke Tests', () => {
-            test('example website works', async ({ page }) => {
-              await page.goto('https://example.com');
-              await expect(page).toHaveTitle('Example Domain');
-            });
-            
-            test('playwright website works', async ({ page }) => {
-              await page.goto('https://playwright.dev');
-              await expect(page).toHaveTitle(/Playwright/);
-            });
-            
-            test('check if localhost responds', async ({ page }) => {
-              // This test will pass if localhost:3000 responds
-              const response = await page.request.get('http://localhost:3000', { timeout: 5000 })
-                .catch(() => ({ status: () => 404 }));
-              console.log(`Localhost response: ${response.status()}`);
-              expect(response.status()).toBeLessThan(500);
-            });
-          });
-          EOF
-      - name: Install Playwright browsers with dependencies
-        working-directory: ./frontend
+          npm install -g @playwright/test
+          npx playwright install --with-deps
+        
+      - name: Run E2E tests
         run: |
-          # Manually install the correct system dependencies for Ubuntu 24.04
-          sudo apt-get update
-          sudo apt-get install -y libasound2t64 libgtk2.0-0t64 libgtk-3-0t64
-          # Tell Playwright not to manage system deps and install only the browser
-          npx playwright install --with-deps chromium --dry-run | grep -oP 'sudo apt-get install --no-install-recommends \K.*' | xargs -r sudo apt-get install -y
-          npx playwright install chromium
-
-      - name: Run smoke tests
-        working-directory: ./frontend
-        run: |
-          npm install -D @playwright/test@1.41.0
-          npx playwright install --with-deps chromium
-          npx playwright test tests/e2e/smoke.spec.ts \
-            --reporter=list \
-            --timeout=30000 \
-            --project=chromium
+          npm run test:e2e
+        working-directory: frontend
