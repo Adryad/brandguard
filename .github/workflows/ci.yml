@@ -249,6 +249,7 @@ jobs:
         working-directory: ./frontend
         run: |
           npm install -D @playwright/test@1.41.0
+          npx playwright install --with-deps chromium
           npx playwright test tests/e2e/smoke.spec.ts \
             --reporter=list \
             --timeout=30000 \
