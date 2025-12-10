@@ -220,5 +220,7 @@ jobs:
         
       - name: Run E2E tests
         run: |
+          npm install -D @playwright/test
+          npx playwright install --with-deps
           npm run test:e2e
         working-directory: frontend
