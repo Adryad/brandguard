@@ -244,7 +244,14 @@ jobs:
             });
           });
           EOF
-      
+      - name: Install Playwright browsers with dependencies
+        working-directory: ./frontend
+        run: |
+         # Install the modern system dependency that replaces 'libasound2'
+         sudo apt-get update
+         sudo apt-get install -y libasound2t64
+         # Proceed with installing browsers
+         npx playwright install --with-deps chromium
       - name: Run smoke tests
         working-directory: ./frontend
         run: |
