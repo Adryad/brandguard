@@ -46,6 +46,10 @@ jobs:
         
       - name: Build and push
         uses: docker/build-push-action@v5
+        env:
+         REGISTRY: ghcr.io
+         IMAGE_NAME: adryad/brandguard
+
         with:
           context: ./backend
           push: true
