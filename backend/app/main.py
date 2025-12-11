@@ -12,9 +12,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 async def root():
     return {"message": "BrandGuard API"}
+
 
 @app.get("/health")
 async def health():
