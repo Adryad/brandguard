@@ -223,6 +223,6 @@ jobs:
         
       - name: Run E2E tests
         run: |
-          #npm run test:e2e
-          npx playwright test tests/e2e/passing.spec.ts
+          npm run test:e2e
+          #npx playwright test tests/e2e/passing.spec.ts
         working-directory: frontend
