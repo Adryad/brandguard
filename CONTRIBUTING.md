@@ -44,4 +44,3 @@ Commits: Conventional Commits format
 
 ## 📞 Questions?
 Join our Discord or open a Discussion!
-EOF
