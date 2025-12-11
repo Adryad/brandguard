@@ -33,7 +33,9 @@ jobs:
         run: pip install -r requirements.txt
         
       - name: Run black formatting check
-        run: poetry run black --check .
+        run: |
+         poetry run black .
+         poetry run black --check .
         
       - name: Run isort
         run: |
