@@ -4,7 +4,6 @@ import { DashboardPage } from '../pages/DashboardPage';
 test.describe('Alerts System', () => {
   test('should display recent alerts', async ({ page }) => {
     const dashboardPage = new DashboardPage(page);
-    
     await dashboardPage.navigate();
     
     // Verify alerts section
@@ -32,9 +31,6 @@ test.describe('Alerts System', () => {
   test('should handle alert interactions', async ({ page }) => {
     const dashboardPage = new DashboardPage(page);
     await dashboardPage.navigate();
-    
-    // Mock any API calls if needed
-    await page.route('**/api/**', route => route.fulfill({ status: 200 }));
     
     const firstAlert = page.locator('[data-testid="alert-item"]').first();
     await expect(firstAlert).toBeVisible();
