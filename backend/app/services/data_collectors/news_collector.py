@@ -2,7 +2,7 @@
 import asyncio
 import aiohttp
 import feedparser
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree as ET
 from datetime import datetime, timedelta
 from typing import List, Dict, Optional
 import xml
@@ -16,6 +16,9 @@ from urllib.parse import urlparse
 import html
 from bs4 import BeautifulSoup
 import spacy
+
+tree = ET.parse("data.xml")
+defusedxml.defuse_stdlib()
 
 logger = logging.getLogger(__name__)
 
