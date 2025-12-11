@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: brandguard
+      POSTGRES_USER: brandguard
+      POSTGRES_PASSWORD: brandguard123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://brandguard:brandguard123@postgres:5432/brandguard
+      REDIS_URL: redis://redis:6379/0
+      SECRET_KEY: test-secret
+    depends_on:
+      - postgres
+      - redis
+
+volumes:
+  postgres_data:
+  redis_data:
