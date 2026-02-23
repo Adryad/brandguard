@@ -275,21 +275,7 @@ POST /api/v1/sources
 docker-compose logs -f [service]
 ```
 
----
 
-## 🏆 What's Next?
-
-### 🚀 Roadmap
-- [ ] Slack/Teams Integration
-- [ ] Advanced Predictive Models
-- [ ] Competitor Analysis
-- [ ] Mobile App
-- [ ] Market Intelligence Dashboard
-
-### Contributing Guide
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-
----
 
 ## 🎉 License
 
