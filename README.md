@@ -251,6 +251,7 @@ POST /api/v1/sources
 
 | Issue | Solution |
 |-----------|--------------|
+| Ports not accessible | Ensure port mappings in docker-compose.yml: `ports: - "8000:8000"` for backend, `"3000:80"` for frontend. Run `docker-compose down && docker-compose up -d` |
 | Postgres won't start | `sudo chmod 777 pgdata/` (Mac/Linux) |
 | Container errors | `docker-compose down -v` and restart |
 | Rate limits | Check `.env` for API keys |

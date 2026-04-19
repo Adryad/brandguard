@@ -23,11 +23,15 @@ services:
       DATABASE_URL: ${DATABASE_URL:-postgresql://brandguard:password123@postgres:5432/brandguard}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
       SECRET_KEY: ${SECRET_KEY:-change-this-in-production}
+    ports:
+      - "8000:8000"
     restart: unless-stopped
 
   frontend:
     build:
       context: ./frontend
+    ports:
+      - "3000:80"
     restart: unless-stopped
 
 volumes:
